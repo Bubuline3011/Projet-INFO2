@@ -70,17 +70,17 @@ void afficher_plateau(int longueur, int hauteur, char **plat_jeu) { //affichage 
         printf(" %c ", plat_jeu[i][j]); // ajouter des espaces pour l'esthetisme
       }
       else if(plat_jeu[i][j] == '/'){
-        couleur("31");
+        couleur("32");
         printf("|");
         couleur("0");
       }
       else if(plat_jeu[i][j] == '*'){
-        couleur("31");
+        couleur("32");
         printf("---");
         couleur("0");
       }
       else if(plat_jeu[i][j] == '='){
-        couleur("31");
+        couleur("32");
         printf("+");
         couleur("0");
       }
