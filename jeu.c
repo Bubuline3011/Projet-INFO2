@@ -134,6 +134,10 @@ void partie (int longueur, int hauteur, char** plat_jeu, int nb_joueurs, Coordon
   char cible[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'};
   char robot[] = {'1', '2', '3', '4'};
   Joueur* joueur;
+  int robot_alea;
+  int cible_alea;
+  int r_tire[4] ={-1,-1,-1,-1};
+  int tirage = 0;
   joueur = malloc(nb_joueurs*sizeof(Joueur));
   if(joueur == NULL){
     printf("Erreur d'allocation de memoire");
@@ -142,10 +146,6 @@ void partie (int longueur, int hauteur, char** plat_jeu, int nb_joueurs, Coordon
   for(int i=0; i<nb_joueurs; i++){ //on initialise le nb de pts de chaque joueur à 0
     joueur[i].nb_point = 0;
   }
-  int robot_alea;
-  int cible_alea;
-  int r_tire[4] ={-1,-1,-1,-1};
-  int tirage = 0;
   for(int manche_actu = 1; manche_actu <= NB_MANCHES; manche_actu++){
     couleur("36");
     printf("\nManche %d / %d\n", manche_actu, NB_MANCHES);
