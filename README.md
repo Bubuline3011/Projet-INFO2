@@ -23,7 +23,7 @@ Le projet consiste à  développer un jeu de robots glisseurs, à compiler sur l
 ## Installation 
 ### Prérequis 
 - Un terminal C
-### Etape 
+### Etapes 
 Consigne avant de pouvoir jouer : 
 1. Télécharger tous les fichiers en cliquant sur chacun, excepté le rapport de projet et le README.
 2. Mettre  tous les fichiers dans un dossier dans un même fichier si vous le souhaitez.
