@@ -21,9 +21,12 @@ Le projet consiste à  développer un jeu de robots glisseurs, à compiler sur l
 - **Rapport du projet CY-BER Path MI-05-1.pdf** : contient un compte rendue sur l'organisation de l'équipe concernant le projet, les difficultés rencontrés, les solutions apportées et une brève description du projet.
 
 ## Installation 
+
 ### Prérequis 
+
 - Un terminal C
 ### Etapes 
+
 Consigne avant de pouvoir jouer : 
 1. Télécharger tous les fichiers en cliquant sur chacun, excepté le rapport de projet et le README.
 2. Mettre  tous les fichiers dans un dossier dans un même fichier si vous le souhaitez.
@@ -36,7 +39,8 @@ Consigne avant de pouvoir jouer :
 - Jouez !
 
 ## Auteurs
-- Bulard Yona - Initial Work - Bubuline3011
+
 - Pellegrino Capucine - Initial Work - capuuch
 - Farid Hafsa - Initial Work - hfsaa
+- Bulard Yona - Initial Work - Bubuline3011
 
