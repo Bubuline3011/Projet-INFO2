@@ -141,13 +141,13 @@ int case_valide(Coordonnee* cible, int longueur, int hauteur, char **plat_jeu, i
 Coordonnee* placer_cible(int longueur, int hauteur, char** plat_jeu) { // fonction permettant de placer les cibles aléatoirement sur le plateau et retourne un tableau avec les coordonnés des cibles
   char cible[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'};
   Coordonnee* a;
+  int nb_cible_cree = 0;
+  int i=0;
   a = malloc(18*sizeof(Coordonnee));
   if(a==NULL){
     printf("Erreur");
     exit(3);
   }
-  int nb_cible_cree = 0;
-  int i=0;
   while (nb_cible_cree < 18) { // on recommence tant que les 18 cible ne sont pas placé
     a[i].x = rand() % (2*longueur); //on tire au sort une coordonnée x
     a[i].y = rand() % (2*hauteur);  // et une coordonnée y
@@ -161,6 +161,16 @@ Coordonnee* placer_cible(int longueur, int hauteur, char** plat_jeu) { // foncti
 }
 
 void placer_mur_autour_cible(int longueur, int hauteur, char** plat_jeu){ // fonction visant a mettre les deux murs autour des cibles et mettre les murs perpendiculaire au mur exterieur
+  int mur1_ext_horizon_g; // on cree les murs perpendiculaires aux bords extérieurs de la grille, ici on crée des variables qui representeront les murs horizontaux des cotés gauche et droit.
+  int mur2_ext_horizon_g;
+  int mur1_ext_horizon_d;
+  int mur2_ext_horizon_d;
+  
+   int mur1_ext_verti_h; // on cree  les murs perpendiculaires aux bords extérieurs de la grille, ici on crée des variables qui representeront les murs verticales du coté en haut et en bas.
+  int mur2_ext_verti_h;
+  int mur1_ext_verti_b;
+  int mur2_ext_verti_b;
+  
   for (int i = 0; i < 2 * hauteur + 1; i++) {
     for (int j = 0; j < 2 * longueur + 1; j++) {
       if(plat_jeu[i][j]>='A' && plat_jeu[i][j]<='R'){
@@ -196,11 +206,7 @@ void placer_mur_autour_cible(int longueur, int hauteur, char** plat_jeu){ // fon
       }
     }
   }
-
-  int mur1_ext_horizon_g; // on cree dans cette partie les murs perpendiculaires aux bords extérieurs de la grille ici on crée des variables qui representeront les murs horizontaux des cotés gauche et droit.
-  int mur2_ext_horizon_g;
-  int mur1_ext_horizon_d;
-  int mur2_ext_horizon_d;
+  
   do{
     mur1_ext_horizon_g = rand() % (2*hauteur-1) + 1; // on tire au sort la poisition du mur horizontale du coté gauche, la plage de valeur est de 1 à la hauteur de la grille moins 1 (de meme pour les autres tirages au sort)
     do{
@@ -217,11 +223,7 @@ void placer_mur_autour_cible(int longueur, int hauteur, char** plat_jeu){ // fon
   plat_jeu[mur1_ext_horizon_d][2*longueur-1] = '*';
   plat_jeu[mur2_ext_horizon_d][2*longueur-1] = '*';
 
-  int mur1_ext_verti_h; // on cree dans cette partie les murs perpendiculaires aux bords extérieurs de la grille ici on crée des variables qui representeront les murs verticales du coté en haut et en bas. on effectue de la meme maniere que precedement les placement des murs verticaux
-  int mur2_ext_verti_h;
-  int mur1_ext_verti_b;
-  int mur2_ext_verti_b;
-  do{
+  do{// on effectue de la meme maniere que précédemment les placement des murs verticaux
     mur1_ext_verti_h = rand() % (2*longueur-1) + 1;
     do{
       mur2_ext_verti_h = rand() % (2*longueur-1) + 1;
@@ -249,13 +251,13 @@ int case_ok_robot(Coordonnee* robot, int longueur, int hauteur, char** plat_jeu,
 Coordonnee* placer_robot(int longueur, int hauteur, char** plat_jeu){ // fonction permettant de placer les robots aléatoirement sur le plateau et retourne un tableau avec les coordonnés des robots
   char robot[] = {'1', '2', '3', '4'};
   Coordonnee* a;
+  int i = 0;
+  int nb_robot_cree = 0;
   a = malloc(4*sizeof(Coordonnee));
   if(a==NULL){
     printf("Erreur");
     exit(4);
   }
-  int i = 0;
-  int nb_robot_cree = 0;
   while (nb_robot_cree < 4) { // on recommence tant que les 4 robot ne sont pas placé
     a[i].x = rand() % (2*longueur); //on tire au sort une coordonnée x
     a[i].y = rand() % (2*hauteur);  // et une coordonnée y
