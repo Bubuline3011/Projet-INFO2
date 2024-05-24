@@ -13,12 +13,12 @@ Le projet consiste à  développer un jeu de robots glisseurs, à compiler sur l
 ## Structure 
 
 - **`main.c`** : contient la fonction principale
-- **`projet.h`** : contient la déclaration de toutes les fonctions, les structures, les constantes et les inclusions de bibliothèque.
-- **`jeu.c`** : contient toutes les fonction relatif au jeu comme le déplacement des robots, mise a jour des points etc..
-- **`f_utilisateur.c`** : contient les fonctions relatif a l'interface utilisteur et evite certaine faute de frappe.
+- **`projet.h`** : contient la déclaration de toutes les fonctions, les structures, les constantes et les inclusions de bibliothèques.
+- **`jeu.c`** : contient toutes les fonctions relatives au jeu, comme le déplacement des robots, mise à jour des points des joueurs etc..
+- **`f_utilisateur.c`** : contient les fonctions relatives à l'interface utilisteur et évite certaines fautes de frappe.
 - **`crea_affi_plateau.c`** : contient les fonctions qui créent et affichent le plateau de jeu.
 - **Makefile** : permet d'automatiser la compilation.
-- **Rapport du projet CY-BER Path MI-05-1.pdf** : contient un compte rendue sur l'organisation de l'équipe concernant le projet, les difficultés rencontrés, les solutions apportées et une brève description du projet.
+- **Rapport du projet CY-BER Path MI-05-1.pdf** : contient un compte rendu sur l'organisation de l'équipe concernant le projet, les difficultés rencontrées, les solutions apportées et une brève description du projet.
 
 ## Installation 
 
@@ -27,9 +27,9 @@ Le projet consiste à  développer un jeu de robots glisseurs, à compiler sur l
 - Un terminal C
 ### Etapes 
 
-Consigne avant de pouvoir jouer : 
+Consignes avant de pouvoir jouer : 
 1. Télécharger tous les fichiers en cliquant sur chacun, excepté le rapport de projet et le README.
-2. Mettre  tous les fichiers dans un dossier dans un même fichier si vous le souhaitez.
+2. Mettre tous les fichiers dans un dossier dans un même fichier si vous le souhaitez.
 3. Si vous l’avez mis dans un fichier, écrire : **cd nom_du_fichier**.
 4. Écrire dans le terminal : **make all**
 
@@ -40,7 +40,7 @@ Consigne avant de pouvoir jouer :
 
 ## Auteurs
 
-- Pellegrino Capucine - Initial Work - capuuch
-- Farid Hafsa - Initial Work - hfsaa
 - Bulard Yona - Initial Work - Bubuline3011
+- Farid Hafsa - Initial Work - hfsaa
+- Pellegrino Capucine - Initial Work - capuuch
 
