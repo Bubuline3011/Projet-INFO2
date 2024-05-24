@@ -11,53 +11,62 @@ int min_deplacement(int nb_joueurs, Joueur* joueur, int* indice){ // premet de p
   return min_depla;
 } 
 
-void deplacer_robot_temp(char** plat_jeu, int longueur, int hauteur, int robot_alea, int cible_alea, int* nb_depla_actu, Coordonnee* tab_robot, Coordonnee* tab_cible, int manche_actu, Coordonnee* i, char* tab_temp) {
+void deplacer_robot_temp(char** plat_jeu, int longueur, int hauteur, int robot_alea, int cible_alea, int* nb_depla_actu, Coordonnee* tab_robot, Coordonnee* tab_cible, int manche_actu, Coordonnee* i, char* tab_temp) { // permet de deplacer le robot jusqu'au prochain mur.
   int direction;
   int test_dir;
+  int dx = 0; 
+  int dy = 0;
   do {
     printf("Saisir la direction du robot : 1 pour HAUT, 2 pour BAS, 3 pour GAUCHE, 4 pour DROITE :\n ");
     test_dir = scanf("%d", &direction);
     vide_file(); 
-  } while ((direction != 1 && direction != 2 && direction != 3 && direction != 4) || test_dir == 0); 
-  int dx = 0, dy = 0;
+  } while ((direction != 1 && direction != 2 && direction != 3 && direction != 4) || test_dir == 0);
   switch (direction) {
-    case 1: dy = -1; break; // HAUT
-    case 2: dy = 1; break;  // BAS 
-    case 3: dx = -1; break; // GAUCHE
-    case 4: dx = 1; break;  // DROITE
+    case 1: 
+    	dy = -1; // HAUT
+    	break; 
+    case 2: 
+    	dy = 1; // BAS
+    	break;  
+    case 3: 
+    	dx = -1; // GAUCHE
+    	break; 
+    case 4: 
+    	dx = 1;  // DROITE
+    	break;  
   }
-  while ((plat_jeu[i->y + dy][i->x + dx] != '*' && plat_jeu[i->y + dy][i->x + dx] != '/' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '1' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '2' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '3' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '4') && (i->y + 2*dy >= 0 && i->y + 2*dy < 2*hauteur && i->x + 2*dx >= 0 && i->x + 2*dx < 2*longueur)) {
-    if (*tab_temp >= 'A' && *tab_temp <= 'R') {
-      plat_jeu[i->y + 2*dy][i->x + 2*dx] = plat_jeu[i->y][i->x];
-      plat_jeu[i->y][i->x] = *tab_temp;
+  while ((plat_jeu[i->y + dy][i->x + dx] != '*' && plat_jeu[i->y + dy][i->x + dx] != '/' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '1' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '2' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '3' && plat_jeu[i->y + 2*dy][i->x + 2*dx] != '4') && (i->y + 2*dy >= 0 && i->y + 2*dy < 2*hauteur && i->x + 2*dx >= 0 && i->x + 2*dx < 2*longueur)) { // verifications de toutes les conditions de deplacement comme par exemple si il y'a un mur ou un robot apres ou alors si on a atteint les limites du plateau
+    if (*tab_temp >= 'A' && *tab_temp <= 'R') { // si il y'a une lettre qui represente les cibles dans tab_temp : cela veut dire que la ou se trouve le robot, il y a à l'origine une cible
+      plat_jeu[i->y + 2*dy][i->x + 2*dx] = plat_jeu[i->y][i->x]; // on dit que la case d'apres (là où le robot vas se placer) prend la valeur de la case ou y'avait le robot
+      plat_jeu[i->y][i->x] = *tab_temp; // apres le deplacement du robot on replace la cible
       printf("Manche %d / %d\n", manche_actu, NB_MANCHES);
       afficher_plateau(longueur, hauteur, plat_jeu);
-      *tab_temp = '\0';
-      i->y += 2 * dy;
+      *tab_temp = '\0'; // on renitialise tab_temps pour pas que ça rentre a nouveau dans cette condition
+      i->y += 2 * dy; // on met a jour les coordonnées du robot apres le deplacement pour le prochain déplacement
       i->x += 2 * dx;
     }
-    if (plat_jeu[i->y + 2*dy][i->x + 2*dx] >= 'A' && plat_jeu[i->y + 2*dy][i->x + 2*dx] <= 'R') {
-      *tab_temp = plat_jeu[i->y + 2*dy][i->x + 2*dx];
-      plat_jeu[i->y + 2*dy][i->x + 2*dx] = plat_jeu[i->y][i->x];
-      plat_jeu[i->y][i->x] = ' ';
+    if (plat_jeu[i->y + 2*dy][i->x + 2*dx] >= 'A' && plat_jeu[i->y + 2*dy][i->x + 2*dx] <= 'R') { // si la case d'apres est une cible
+      *tab_temp = plat_jeu[i->y + 2*dy][i->x + 2*dx]; // on enregistre temporairement la valeur (lettre) de la cible
+      plat_jeu[i->y + 2*dy][i->x + 2*dx] = plat_jeu[i->y][i->x]; // on dit que la case d'apres (là où le robot vas se placer) prend la valeur de la case ou y'avait le robot
+      plat_jeu[i->y][i->x] = ' '; // on met un vide dans la case du robot initial
       printf("Manche %d / %d\n", manche_actu, NB_MANCHES);
       afficher_plateau(longueur, hauteur, plat_jeu);
-      i->y += 2 * dy;
+      i->y += 2 * dy; // on met a jour les coordonnées du robot apres le deplacement pour le prochain déplacement
       i->x += 2 * dx;
     } 
-    else if (plat_jeu[i->y + 2*dy][i->x + 2*dx] == ' ' && (*tab_temp < 'A' || *tab_temp > 'R')){     //pas compris *tab_temp
-      plat_jeu[i->y + 2*dy][i->x + 2*dx] = plat_jeu[i->y][i->x];
-      plat_jeu[i->y][i->x] = ' ';
+    else if (plat_jeu[i->y + 2*dy][i->x + 2*dx] == ' ' && (*tab_temp < 'A' || *tab_temp > 'R')){     // si la case d'apres est vide 
+      plat_jeu[i->y + 2*dy][i->x + 2*dx] = plat_jeu[i->y][i->x]; // on dit que la case d'apres (là où le robot vas se placer) prend la valeur de la case ou y'avait le robot
+      plat_jeu[i->y][i->x] = ' '; // on met un vide dans la case du robot initial
       printf("Manche %d / %d\n", manche_actu, NB_MANCHES);
       afficher_plateau(longueur, hauteur, plat_jeu);
-      i->y += 2 * dy;
+      i->y += 2 * dy; // on met a jour les coordonnées du robot apres le deplacement pour le prochain déplacement
       i->x += 2 * dx;
     }
-}
-*nb_depla_actu += 1;
+ }
+ *nb_depla_actu += 1; //on met a jour le nombre de deplacement du robot (il est arrivé a un obstable)
 }
 
-void resultat(int nb_joueurs, Joueur* joueur){ // affiche les scors finaux de tous les joueurs + qui est le gagnant
+void resultat(int nb_joueurs, Joueur* joueur){ // affiche les scores finaux de tous les joueurs + qui est le gagnant
   for(int i=0; i<nb_joueurs; i++){ 
     printf("Scores finaux : Le joueur %d a %d points\n", i+1, joueur[i].nb_point);
   }
@@ -124,7 +133,7 @@ void cible_robot_choisit(int robot_alea, int cible_alea, char* cible){ // affich
 int deja_tire(int* r_tire, int taille,  int nombre){
   for(int i= 0; i<taille; i++){
     if(r_tire[i]== nombre){
-      return 1;
+      return 1; // si le robot choisit a deja été tiré
     }
   }
   return 0;
@@ -155,8 +164,8 @@ void partie (int longueur, int hauteur, char** plat_jeu, int nb_joueurs, Coordon
         cible_alea = rand() % 18;
     }while((plat_jeu[tab_cible[cible_alea].y][tab_cible[cible_alea].x] >= '1' && plat_jeu[tab_cible[cible_alea].y][tab_cible[cible_alea].x]<= '4') || deja_tire(r_tire, 4, robot_alea) == 1);
     cible_robot_choisit(robot_alea, cible_alea, cible);
-    r_tire[tirage] = robot_alea;
-    tirage++;
+    r_tire[tirage] = robot_alea; 
+    tirage++; 
     Coordonnee placer_r;
     placer_r.y = tab_robot[robot_alea].y;  
     placer_r.x = tab_robot[robot_alea].x;
