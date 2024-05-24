@@ -176,6 +176,7 @@ void partie (int longueur, int hauteur, char** plat_jeu, int nb_joueurs, Coordon
       sleep(1);
       effacer_ligne();
     }
+    vide_file();
     system("clear"); // on supprime tt l'écran, car les joueurs ne doivent plus voir la grille
     int test_nb_d;
     if (i == 0){ // vérfication qu'il reste 0 seconde
