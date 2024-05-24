@@ -43,38 +43,24 @@ void afficher_plateau(int longueur, int hauteur, char **plat_jeu) { //affichage 
   for (int i = 0; i < 2 * hauteur + 1; i++) {
     for (int j = 0; j < 2 * longueur + 1; j++) {
       if(plat_jeu[i][j]== '+' ||  plat_jeu[i][j]== '|'){
-        /*if(i==0 ||j==0 ||i == 2*hauteur ||j== 2*longueur){
-          couleur("31");
-          printf("%c", plat_jeu[i][j]);
-          couleur("0");
-        }
-        else{*/
           couleur("30");
           printf("%c", plat_jeu[i][j]);
           couleur("0");
-        //}
       }
       else if(plat_jeu[i][j]== '-'){
-        /*if(i==0 ||j==0 ||i == 2*hauteur ||j== 2*longueur){
-          couleur("31");
-          printf("%c--",plat_jeu[i][j]);
-          couleur("0");
-        }*/
-        //else{
           couleur("30");
           printf("%c--",plat_jeu[i][j]) ; // ajouter des tiret pour l'esthetisme 
           couleur("0");
-        //}
       }
-      else if(plat_jeu[i][j] >= 'A' && plat_jeu[i][j] <= 'R'){
+      else if(plat_jeu[i][j] >= 'A' && plat_jeu[i][j] <= 'R'){ // affichage des cibles
         printf(" %c ", plat_jeu[i][j]); // ajouter des espaces pour l'esthetisme
       }
-      else if(plat_jeu[i][j] == '/'){
+      else if(plat_jeu[i][j] == '/'){ // affichage des murs de couleurs
         couleur("32");
         printf("|");
         couleur("0");
       }
-      else if(plat_jeu[i][j] == '*'){
+      else if(plat_jeu[i][j] == '*'){ // affichage des murs de couleurs
         couleur("32");
         printf("---");
         couleur("0");
@@ -166,7 +152,7 @@ void placer_mur_autour_cible(int longueur, int hauteur, char** plat_jeu){ // fon
   int mur1_ext_horizon_d;
   int mur2_ext_horizon_d;
   
-   int mur1_ext_verti_h; // on cree  les murs perpendiculaires aux bords extérieurs de la grille, ici on crée des variables qui representeront les murs verticales du coté en haut et en bas.
+  int mur1_ext_verti_h; // on cree les murs perpendiculaires aux bords extérieurs de la grille, ici on crée des variables qui representeront les murs verticales du coté en haut et en bas.
   int mur2_ext_verti_h;
   int mur1_ext_verti_b;
   int mur2_ext_verti_b;
